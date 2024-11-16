@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRED - Testnet Node Contributor</title>
+    <!-- Favicon untuk tab browser -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%230d1428' stroke='%237cf7ff' stroke-width='2'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='40' fill='%237cf7ff' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 40, 80, 0.8) 100%
+            );
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            animation: rotateLogo 20s linear infinite;
+        }
+
+        .logo-circle {
+            fill: #0d1428;
+            stroke: #7cf7ff;
+            stroke-width: 2;
+            filter: drop-shadow(0 0 10px rgba(124, 247, 255, 0.5));
+        }
+
+        .logo-text {
+            fill: #7cf7ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            filter: drop-shadow(0 0 5px rgba(124, 247, 255, 0.5));
+        }
+
+        .frame {
+            position: relative;
+            padding: 60px 80px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(13, 20, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transform: perspective(1000px) rotateX(0deg);
+            transition: transform 0.3s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .frame:hover {
+            transform: perspective(1000px) rotateX(5deg);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            letter-spacing: 15px;
+            background: linear-gradient(45deg, #fff, #7cf7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: 1.5em;
+            letter-spacing: 5px;
+            color: #7cf7ff;
+            text-shadow: 0 0 5px rgba(124, 247, 255, 0.5);
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .decoration::before,
+        .decoration::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(124, 247, 255, 0.5);
+        }
+
+        .decoration::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .decoration::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @keyframes rotateLogo {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(124, 247, 255, 0.5),
+                             0 0 10px rgba(124, 247, 255, 0.5),
+                             0 0 15px rgba(124, 247, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 10px rgba(124, 247, 255, 0.7),
+                             0 0 20px rgba(124, 247, 255, 0.7),
+                             0 0 30px rgba(124, 247, 255, 0.7);
+            }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(124, 247, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <script>
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+        </script>
+    </div>
+    <div class="container">
+        <svg class="logo" viewBox="0 0 100 100">
+            <circle class="logo-circle" cx="50" cy="50" r="45"/>
+            <text class="logo-text" x="50" y="65" text-anchor="middle">C</text>
+        </svg>
+        <div class="frame">
+            <div class="decoration"></div>
+            <h1>IRED</h1>
+            <p>TESTNET NODE CONTRIBUTOR</p>
+        </div>
+    </div>
+</body>
+</html>
